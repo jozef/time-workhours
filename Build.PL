@@ -1,0 +1,23 @@
+use strict;
+use warnings;
+use Module::Build;
+
+my $builder = Module::Build->new(
+    module_name         => 'DateTime::WorkingHours',
+    license             => 'perl',
+    dist_author         => 'Jozef Kutej <jozef@kutej.net>',
+    dist_version_from   => 'lib/DateTime/WorkingHours.pm',
+    build_requires => {
+        'Test::More' => 0,
+        'Test::LectroTest::Compat' => 0,
+    },
+    requires => {
+        'DateTime' => 0,
+        'Class::Accessor::Fast' => 0,
+        'Carp::Clan' => 0,
+    },
+    add_to_cleanup      => [ 'DateTime-WorkingHours-*' ],
+    create_makefile_pl => 'traditional',
+);
+
+$builder->create_build_script();
