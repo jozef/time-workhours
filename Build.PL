@@ -10,6 +10,8 @@ my $builder = Module::Build->new(
     build_requires => {
         'Test::More' => 0,
         'Test::LectroTest::Compat' => 0,
+        'Test::LectroTest::Generator' => 0,
+        'Data::Dumper' => 0,
     },
     requires => {
         'DateTime' => 0,
