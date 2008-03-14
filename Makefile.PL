@@ -9,6 +9,8 @@ WriteMakefile
           'PREREQ_PM' => {
                            'Test::More' => 0,
                            'DateTime' => 0,
+                           'Test::LectroTest::Generator' => 0,
+                           'Data::Dumper' => 0,
                            'Carp::Clan' => 0,
                            'Test::LectroTest::Compat' => 0,
                            'Class::Accessor::Fast' => 0
