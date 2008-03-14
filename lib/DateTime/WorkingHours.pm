@@ -24,12 +24,14 @@ DateTime::WorkingHours - proportional shift DateTime to a working hours and few 
 Purpouse of this module is to equaly distribute tasks that are comming
 through the whole day into certain day interval.
 
+Or just move comming request to the start of working hours.
+
 For example imagine you want to process smoke tests only in the idle
 server hours - in the night. But the CPAN modules are comming through
 all day. You can note down the modules as they are comming and set
 the processing time to C<< $wh->shift_to_working_time() >> so that
 it will not take the processing time when the server has to do it's
-job.
+"real" job.
 
 =cut
 
@@ -72,14 +74,14 @@ start.
 C<work_interval> is how many minutes (or hours) does the working interval
 last.
 
-Both can be passed as a number in that cas must represent minutes or as a number
-with 'h' at the end representing the value in hours.
+Both can be passed as a number in that case must represent minutes or as a string
+with numbers and 'h' at the end representing the value in hours.
 
 Example:
 
     $wh = DateTime::WorkingHours->new(
-        work_interval_start => '2h',
-        work_interval       => 180,
+        work_interval_start => '2h',  # or 120
+        work_interval       => 180,   # or '3h'
     );
 
 Work interval starts at 02:00 and lasts for 3 hours.
@@ -101,7 +103,7 @@ sub new {
 
 =head2 work_start($datetime)
 
-Return nearest DateTime when the work can start. If inside
+Return nearest DateTime when the work time starts. If inside
 the work interval then returns start datetime of this
 interval.
 
@@ -160,7 +162,9 @@ sub next_work_start {
 
 =head2 work_end($datetime)
 
-Returns nearest end of the work.
+Returns nearest end of the work time.
+
+If argument not passed the default is C<< DateTime->now >>.
 
 =cut
 
@@ -178,6 +182,8 @@ sub work_end {
 =head2 within($datetime)
 
 Return true/false if the $datetime lies within working hours.
+
+If argument not passed the default is C<< DateTime->now >>.
 
 =cut
 
@@ -221,11 +227,13 @@ If the DateTime will be at 01:59 (last minute of the working interval) there wil
 
 If the DateTime will be at 02:00 (first non working minute) the shift will be to 22:00.
 
+If argument not passed the default is C<< DateTime->now >>.
+
 =cut
 
 sub shift_to_working_time {
     my $self = shift;
-    my $date = shift;
+    my $date = shift || DateTime->now;
     
     croak 'pass DataTime object as argument'
         if ref $date ne 'DateTime';
