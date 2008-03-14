@@ -1,0 +1,19 @@
+---
+name: DateTime-WorkingHours
+version: 0.01
+author:
+  - 'Jozef Kutej <jozef@kutej.net>'
+abstract: proportional shift DateTime to a working hours and few working hours routines
+license: perl
+requires:
+  Carp::Clan: 0
+  Class::Accessor::Fast: 0
+  DateTime: 0
+build_requires:
+  Test::LectroTest::Compat: 0
+  Test::More: 0
+provides:
+  DateTime::WorkingHours:
+    file: lib/DateTime/WorkingHours.pm
+    version: 0.01
+generated_by: Module::Build version 0.26
