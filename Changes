@@ -1,5 +1,9 @@
 Revision history for DateTime-WorkingHours
 
+0.02    17. Mar 2008
+    * renamed to Time::WorkHours
+    * don't use this one
+
 0.01    14. Mar 2008
     * First version, released on an unsuspecting world.
     * no other changes as everything is new ;)

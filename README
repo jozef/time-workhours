@@ -1,32 +1,53 @@
 NAME
-    DateTime::WorkingHours - proportional shift DateTime to a working hours
-    and few working hours routines
-
-SYNOPSIS
-        # our working hours is from 02:00 until 07:00
-        my $wh = DateTime::WorkingHours->new(
-            work_interval_start => '02h',
-            work_interval       => '5h',    # or 5*60
-        );
-    
-        # shift given date to our working hours
-        my $new_datetime = $wh->shift_to_working_time(DateTime->new(
-            'hour'   => 14,
-            'minute' => 32,
-            # ... what ever month, year, day
-        ));
+    DateTime::WorkingHours - renamed to Time::WorkHours
 
 DESCRIPTION
-    Purpouse of this module is to equaly distribute tasks that are comming
-    through the whole day into certain day interval.
+    Don't use this one. Use Time::WorkHours instead because:
 
-    Or just move comming request to the start of working hours.
-
-    For example imagine you want to process smoke tests only in the idle
-    server hours - in the night. But the CPAN modules are comming through
-    all day. You can note down the modules as they are comming and set the
-    processing time to "$wh->shift_to_working_time()" so that it will not
-    take the processing time when the server has to do it's "real" job.
+            -------- Original Message --------
+            Subject: Re: Your module DateTime::WorkingHours
+            Date: Mon, 17 Mar 2008 09:53:56 +0100
+            From: Jozef Kutej <jozef@kutej.net>
+            To: Dave Rolsky <autarch@urth.org>
+            CC: datetime@perl.org
+        
+            Dave Rolsky wrote:
+            > On Fri, 14 Mar 2008, Jozef Kutej wrote:
+            > 
+            >>> I noticed you released a module DateTime::WorkingHours recently. I'd
+            >>> prefer that folks not release modules under the DateTime namespace
+            >>> without talking to the datetime@perl.org list about it first. In
+            >>> particular, the namespace you've chosen doesn't really fit within the
+            >>> DateTime namespace guidelines (see
+            >>> http://datetime.perl.org/index.cgi?NamespaceStandards)
+            >>
+            >> Sorry, I didn't know. I got fast "inspiration" from
+            >> DateTime::BusinessHours. But as I look now it doesn't have a log
+            >> "history".
+            > 
+            > Heh, I contacted the author of that module too but he never replied.
+            > 
+            >>> Would you mind posting something to the datetime@perl.org list to
+            >>> discuss both the name and API of your module? Alternately, if you don't
+            >>> want to do that, I'd appreciate it if you'd rename the module so it
+            >>> doesn't start with "DateTime::".
+            >>
+            >> I don't mind to think of any different name (inside or outside of
+            >> DateTime::). What are the suggestions?
+            > 
+            > Well, if you want it in the DateTime:: namespace, we should discuss the
+            > API first on the list. The key is to make sure that the API looks like
+            > any similar modules.
+            > 
+            > In this particular case, I'm not sure there _are_ any similar modules,
+            > which is all the more reason to get the API right this time, so that any
+            > similar modules that come along later have a model to follow.
+            > 
+        
+            I have renamed the module to Time::WorkHours.
+        
+            Regards,
+            Jozef
 
 PROPERTIES
         work_interval_start
